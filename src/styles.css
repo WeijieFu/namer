@@ -1,0 +1,102 @@
+.container {
+  height: 164px;
+  overflow: auto;
+}
+
+.editor {
+  min-height: 100%;
+  font-size: var(--font-size-12);
+  font-family: var(--font-family-code);
+}
+
+.menu-button {
+  display: flex;
+  border: 0.5px #eee solid;
+  padding: 8px;
+  font-size: 12px;
+  margin-right: 8px;
+  /* transition: all 0.1s ease-out; */
+}
+.menu-button:hover {
+  background-color: #19a0fb;
+  color: white;
+}
+.menu-button:hover path {
+  stroke: white;
+}
+.menu-button__text {
+  flex: 1;
+}
+
+.block-button {
+  margin-left: 24px;
+  display: flex;
+  border: 0.5px #eee solid;
+  padding: 8px;
+  font-size: 12px;
+  margin-right: 8px;
+  /* transition: all 0.1s ease-out; */
+}
+.block-button:hover {
+  background-color: #19a0fb;
+  color: white;
+}
+.block-button:hover path {
+  stroke: white;
+}
+.add-button__text {
+  color: #aaa;
+}
+
+.primary-button {
+  display: flex;
+  background-color: #19a0fb;
+  color: white;
+  padding: 8px;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.primary-button:hover {
+  background-color: #107cc4;
+}
+.bottom {
+  position: fixed;
+  bottom: 12px;
+  width: 296px;
+}
+
+.tag {
+  padding: 4px;
+  background-color: #f6e05e;
+  margin-right: 4px;
+}
+
+.tag:hover {
+  background-color: #ecc94b;
+}
+
+.tag-placeholder {
+  color: #aaa;
+}
+
+.title {
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.back {
+  margin-right: 8px;
+  opacity: 0.3;
+}
+
+.back:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.scroll-wrapper {
+  height: 340px;
+  overflow-y: scroll;
+}
