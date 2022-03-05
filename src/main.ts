@@ -12,17 +12,23 @@ import { getSpreadsheet } from "./api"
 
 const main = () => {
   let _spreadsheet:string[][] = []
-  let _spreadsheetName:string = ""
-  let _spreadsheetId:string = ""
+  // let _spreadsheetName:string = ""
+  // let _spreadsheetId:string = ""
 
   once<StartHandler>("START", async (link) => {
     const response:any = await getSpreadsheet(link)
+    console.log(response)
+    _spreadsheet = response.spreadsheet
 
-    _spreadsheet = response[0].values
-    _spreadsheetName = response[0].range.split("!")[0]
-    _spreadsheetId = response[1]
+    const processedSpreadsheet:string[][] = []
 
-    showUI({ width: 320, height: 480 }, { _spreadsheet: _spreadsheet })
+    _spreadsheet.map(row=>{
+      if(row[0]){
+        processedSpreadsheet.push(row)
+      }
+    })
+
+    showUI({ width: 320, height: 480 }, { _spreadsheet: processedSpreadsheet })
   })
 
   showUI({ width: 320, height: 480 }, { _spreadsheet: _spreadsheet })
