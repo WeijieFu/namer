@@ -26,8 +26,8 @@
     "editorType": [
       "figma"
     ],
-    "id": "namer",
-    "name": "Namer",
+    "id": "namet",
+    "name": "Namet",
     "main": "src/main.js",
     "ui": "src/ui.tsx",
     "enablePrivatePluginApi": true

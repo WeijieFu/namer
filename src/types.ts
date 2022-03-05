@@ -9,5 +9,15 @@ export interface StartHandler extends EventHandler {
 
 export interface NameScreenHandler extends EventHandler{
   name: 'NAME_FRAME',
-  handler: (frameName: string[])=>void
+  handler: (data: any)=>void
+}
+
+export interface UpdateUrlHandler extends EventHandler{
+  name: 'UPDATE_URL',
+  handler: (data:any)=>void
+}
+
+export interface UpdateSpreadsheetHandler extends EventHandler{
+  name: 'UPDATE_SPREADSHEET',
+  handler: (data:any)=>void
 }
