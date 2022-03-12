@@ -41,7 +41,7 @@ function Plugin(props: { _spreadsheet: string[][] }) {
   useEffect(()=>{
     on<UpdateSpreadsheetHandler>("UPDATE_SPREADSHEET", (data)=>{
       setSpreadsheet(data.spreadsheet)
-      updateSpreadsheet(data.spreadsheet)
+      updateSpreadsheet(data.spreadsheet, data.__appscriptUrl)
     })
   },[])
 

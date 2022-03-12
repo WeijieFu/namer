@@ -12,10 +12,10 @@ import { getSpreadsheet } from "./api"
 
 const main = () => {
   let _spreadsheet:string[][] = []
-  // let _spreadsheetName:string = ""
-  // let _spreadsheetId:string = ""
+  let __appscriptUrl: string = ''
 
   once<StartHandler>("START", async (link) => {
+    __appscriptUrl = link
     const response:any = await getSpreadsheet(link)
     console.log(response)
     _spreadsheet = response.spreadsheet
@@ -39,22 +39,34 @@ const main = () => {
     if (figma.currentPage.selection.length > 1) {
       figma.notify('Please select only one frame', {timeout: 1000, error: true})
 
-    } else if (figma.currentPage.selection[0].type !== "FRAME") {
-      figma.notify('Please select a frame', {timeout: 1000, error: true})
+    } else if (figma.currentPage.selection[0].type === "FRAME" || "COMPONENT" || "COMPONENT+SET") {
+       //name frame
+       //// NAME SCREEN 
+    
+       const screenName = data.frameName.slice(0, 4)
+       const newScreenName = screenName.join(' / ')
+       
+       if(data.frameName.length < 5){
+        figma.currentPage.selection[0].name = newScreenName
+       }else{
+         const newBlockName = `${newScreenName} - ${data.frameName[4]}`
+         figma.currentPage.selection[0].name = newBlockName
+       }
+      
+ 
+       //update link
+       const id = figma.currentPage.selection[0].id.replace(":", "%3A")
+       const frameUrl = `https://www.figma.com/file/${figma.fileKey}/${figma.root.name}?node-id=${id}`
+      
+       // send the frame URL to UI
+     
+       data.spreadsheet[data.index][5] = frameUrl
+       emit("UPDATE_SPREADSHEET", {spreadsheet: data.spreadsheet, __appscriptUrl: __appscriptUrl})
+     
 
     } else {
-      const newFramename = data.frameName.join("-")
-      figma.currentPage.selection[0].name = newFramename
-
-      //update link
-      const id = figma.currentPage.selection[0].id.replace(":", "%3A")
-      const frameUrl = `https://www.figma.com/file/${figma.fileKey}/${figma.root.name}?node-id=${id}`
-      // send the frame URL to UI
-    
-      data.spreadsheet[data.index][5] = frameUrl
-      // emit("UPDATE_URL", {frameUrl:frameUrl, index: data.index})
-      // data.setSpreadsheet(data.spreadsheet)
-      emit("UPDATE_SPREADSHEET", {spreadsheet: data.spreadsheet})
+      console.log(figma.currentPage.selection[0].type)
+      figma.notify('Please select a frame, component or component set', {timeout: 1000, error: true})
     }
   })
 }
