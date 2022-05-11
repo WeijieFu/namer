@@ -4,6 +4,6 @@
     "typeRoots": ["node_modules/@figma", "node_modules/@types"],
     "checkJs": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/api.js", "src/main.js"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/api.ts", "src/main.ts"],
   "jsx": " preserve"
 }

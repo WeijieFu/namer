@@ -48,7 +48,7 @@ function Plugin(props: { _spreadsheet: string[][] }) {
 
 
   return (
-  
+ 
     <Container>
       <VerticalSpace space="small" />
       {currentPage !== '' &&<div>
